@@ -7,6 +7,9 @@ defmodule <%= web_namespace %>.PageLive do
   end
 
   @impl true
+  def handle_event("suggest", %{"q" => ""}, socket), do: {:noreply, socket}
+
+  @impl true
   def handle_event("suggest", %{"q" => query}, socket) do
     {:noreply, assign(socket, results: search(query), query: query)}
   end
